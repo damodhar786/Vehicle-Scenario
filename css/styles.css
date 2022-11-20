@@ -14,6 +14,12 @@
 
 .form-control{
     background-color: #252526;
+    color: #ffffff;
+}
+
+.form-control:focus{
+    background-color: #252526;
+    color: #ffffff;
 }
 
 label{

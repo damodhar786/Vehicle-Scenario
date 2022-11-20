@@ -34,17 +34,17 @@
                     <div class="col-md-6">
                         <ul class="nav justify-content-end">
                             <li class="nav-item">
-                                <button type="button" class="btn btn-info me-3">New Scenario</button>
+                              <a href="add_scenario_page.html"> <button type="button" class="btn btn-info me-3">New Scenario</button> </a>
                             </li>
                             <li class="nav-item">
-                                <button type="button" class="btn btn-success me-3">Add Vehicle</button>
+                                <a href="add_vehicle_page.html"><button type="button" class="btn btn-success me-3">Add Vehicle</button></a>
                             </li>
                             <li class="nav-item">
-                                <button type="button" class="btn btn-warning">Delete All</button>
+                                <button type="button" class="btn btn-warning" id="delete-scenarios">Delete All</button>
                             </li>
                         </ul>
                     </div>
-                </div> 
+                </div>  
 
                 
                 
@@ -60,40 +60,22 @@
                             <th>Edit</th>
                             <th>Delete</th>
                         </thead>
-                        <tbody  class="table-data">
-                            <tr>
-                                <td>1</td>
-                                <td>Test Scenario</td>
-                                <td>2s</td>
-                                <td>1</td>
-                                <td><i class="fa-solid fa-circle-plus"></i></td>
-                                <td><i class="fa-solid fa-pencil"></i></td>
-                                <td><i class="fa-solid fa-trash-can"></i></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>My Scenario</td>
-                                <td>5s</td>
-                                <td>5s</td>
-                                <td><i class="fa-solid fa-circle-plus"></i></td>
-                                <td><i class="fa-solid fa-pencil"></i></td>
-                                <td><i class="fa-solid fa-trash-can"></i></td>
-                            </tr>
-                            
+                        <tbody  class="table-data" id="scenario-data">
 
                         </tbody>
                     </table>
-
-
-                    
-                  </div>
-
+                   
+                </div>
 
             </div>
         </div>
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+    <script src="./js/all_scenarios.js"></script>
 
 </body>
 </html>
