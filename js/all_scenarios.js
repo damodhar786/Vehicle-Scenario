@@ -14,9 +14,9 @@ if(localData !== null && localData !== '' && localData !== 'undefined'){
         scenario_row += '    <td>'+value.scenario_name+'</td>';
         scenario_row += '    <td>'+value.scenario_time+'</td>';
         scenario_row += '    <td>1</td>';
-        scenario_row += '    <td><i class="fa-solid fa-circle-plus"></i></td>';
-        scenario_row += '    <td><i class="fa-solid fa-pencil"></i></td>';
-        scenario_row += '    <td><i class="fa-solid fa-trash-can"></i></td>';
+        scenario_row += '    <td><i class="fa-solid fa-circle-plus" id="add-vehicle"></i></td>';
+        scenario_row += '    <td><i class="fa-solid fa-pencil" id="edit-scenario"></i></td>';
+        scenario_row += '    <td><i class="fa-solid fa-trash-can" id="delete-one-scenario"></i></td>';
         scenario_row += '</tr>';
 
         $("#scenario-data").append(scenario_row);
@@ -31,11 +31,18 @@ if(localData !== null && localData !== '' && localData !== 'undefined'){
     $("#scenario-data").html(scenario_row);
 }
 
-// Delete Scenario List
+// Delete ALL Scenario List
 
 $("#delete-scenarios").click(function(){
     localStorage.removeItem('scenario');
 
-    alert("Scenario Data Has been deleted");
+    alert(" Data Of Scenario Has been deleted ");
     location.reload();
+});
+
+
+// Delete One Scenario from List
+
+$("#delete-one-scenario").click(function(){
+    localStorage.removeItem()
 });

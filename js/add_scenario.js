@@ -5,18 +5,9 @@ $("#add").click(function(){
     $("#name-error").hide();
     $("#time-error").hide();
 
-    let scenarioName = $("#scenario-name").val();
-    let scenarioTime = $("#scenario-time").val();
-
-    if (scenarioName == '' || scenarioName == null) {
-          
-        // $('.error').text("Please Enter the value");
-        $("#name-error").show();
-    }
-    if(scenarioTime == '' || scenarioTime == null){
-        // $('.error').text("Please Enter the value");
-        $("#time-error").show();
-    }
+    var scenarioName = $("#scenario-name").val();
+    var scenarioTime = $("#scenario-time").val();
+    
 
     if(scenarioName !== '' && scenarioTime !== ''){
 
@@ -51,10 +42,19 @@ $("#add").click(function(){
             ];
 
             localStorage.setItem('scenario',JSON.stringify(scenario));
-            alert("your scenario added");           
-
+            alert("Your Scenario Added");
+        }
+    }else{
+        if (scenarioName == '' || scenarioName == null) {
+        
+            $("#name-error").show();
+        }
+        if(scenarioTime == '' || scenarioTime == null){
+    
+            $("#time-error").show();
         }
     }
+
 });
 
 // Reset
@@ -62,4 +62,7 @@ $("#add").click(function(){
 $("#reset").click(function(){
     $("#scenario-name").val('');
     $("#scenario-time").val('');
+
+    $("#name-error").hide();
+    $("#time-error").hide();
 });

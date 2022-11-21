@@ -61,6 +61,10 @@ label{
     color: gray;
 }
 
+.invalid-tooltip {
+    top: auto;
+}
+
 
 /* Home CSS */
 
