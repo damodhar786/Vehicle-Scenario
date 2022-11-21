@@ -43,6 +43,9 @@ $("#add").click(function(){
 
             localStorage.setItem('scenario',JSON.stringify(scenario));
             alert("Your Scenario Added");
+
+                $("#scenario-name").val('');
+                $("#scenario-time").val('');
         }
     }else{
         if (scenarioName == '' || scenarioName == null) {

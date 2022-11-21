@@ -4,10 +4,9 @@ if(localData !== null && localData !== '' && localData !== 'undefined'){
 
     var dataConvert = JSON.parse(localData);
     $.each(dataConvert, function(index,value){
-        console.log(value);
 
         var scenarioList = '';
-        scenarioList += '<option value="+value.scenario_id+">'+value.scenario_name+'</option>';
+        scenarioList += '<option value="'+value.scenario_id+'">'+value.scenario_name+'</option>';
 
         $("#scenario-id").append(scenarioList);
     });
@@ -43,6 +42,7 @@ $("#add").click(function(){
 
             var vehicle = {
                 'scenario_id': scenarioId,
+                'vehicle_id': dataConvert.length + 1,
                 'vehicle_name': vehicleName,
                 'speed': speed,
                 'position_x': positionX,
@@ -66,6 +66,7 @@ $("#add").click(function(){
         { 
             var vehicle = [{
                 'scenario_id': scenarioId,
+                'vehicle_id': 1,
                 'vehicle_name': vehicleName,
                 'speed': speed,
                 'position_x': positionX,
