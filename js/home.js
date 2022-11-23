@@ -35,6 +35,9 @@ if(localData !== null && localData !== '' && localData !== 'undefined'){
 
         if(vehicleData !== null && vehicleData !== '' && vehicleData !== 'undefined'){
             var found = 0;
+
+            $("#road").html('');
+
             $.each(vehicleData, function(index,value){
                 
                 if(value.scenario_id == scenarioId){    
@@ -192,4 +195,11 @@ function move_vehicle(position,id,x,y,speed,direction,scenarioTime,startTime){
          startTime++;    
     }
 
+}
+
+
+// Stop Simulation
+
+function stopSimulation(){
+    $("#road").html('');
 }
