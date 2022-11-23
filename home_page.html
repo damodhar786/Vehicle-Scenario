@@ -63,16 +63,36 @@
                 <div class="col-md-12">
                     <ul class="nav justify-content-end">
                         <li class="nav-item">
-                            <button type="button" class="btn btn-success me-3">Start Simulation</button>
+                            <button type="button" class="btn btn-success me-3" onclick="start_simulation();">Start Simulation</button>
                         </li>
                         <li class="nav-item">
-                            <button type="button" class="btn btn-info me-3">Stop Simulation</button>
+                            <button type="button" class="btn btn-info" onclick="stop_simulation()">Stop Simulation</button>
                         </li>
                     </ul>
                 </div>
 
-                <div class="col-md-12">
-                    <canvas id="myChart"></canvas>
+                <div>
+                    <div id="road" class="container mt-5 bg-dark" style="width: 1000px; height:500px; position: relative;">
+                        <!-- Directions -->
+                        <!-- 
+                            Forward: top:50px; left:60px - left: x
+                            Backward: top:50px; right:60px - right: x
+                            Upward: top:50px; right:60px - bottom: y
+                            Downward: bottom:50px; right:60px - top: y
+                        -->
+                        <div class="vehicles bg-info" id="bus" style=" width:fit-content; height:40px; position: absolute; bottom:100px; left: 50px;" data-x="50" data-y="100" data-direction="forward">
+                            <h3>BUSES</h3>
+                        </div>
+                        <div class="vehicles bg-warning" id="car" style=" width:fit-content; height:40px; position: absolute; bottom:1px; left: 1px;" data-x="1 " data-y="1" data-direction="upward">
+                            <h3>CAR</h3>
+                        </div>
+                        <!-- <div class="vehicles bg-warning" id="auto" style=" width:fit-content; height:40px; position: absolute; bottom:50px; left: 100px;" data-x="100" data-y="50" data-direction="upward">
+                            <h3>AUTO</h3>
+                        </div>
+                        <div class="vehicles bg-warning" id="bike" style=" width:fit-content; height:40px; position: absolute; bottom:100px; left: 100px;" data-x="100" data-y="100" data-direction="downward">
+                            <h3>BIKE</h3>
+                        </div> -->
+                    </div>
                 </div>             
 
             </div>
@@ -84,42 +104,6 @@
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
     <script src="./js/home.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-
-    <script>
-        var xyValues = [
-          {x:50, y:7},
-          {x:60, y:8},
-          {x:70, y:8},
-          {x:80, y:9},
-          {x:90, y:9},
-          {x:100, y:9},
-          {x:110, y:10},
-          {x:120, y:11},
-          {x:130, y:14},
-          {x:140, y:14},
-          {x:150, y:15}
-        ];
-        
-        new Chart("myChart", {
-          type: "scatter",
-          data: {
-            datasets: [{
-              pointRadius: 4,
-              pointBackgroundColor: "rgb(0,0,255,1)",
-              data: xyValues
-            }]
-          },
-          options: {
-            legend: {display: false},
-            scales: {
-              xAxes: [{ticks: {min: 40, max:160}}],
-              yAxes: [{ticks: {min: 6, max:16}}],
-            }
-          }
-        });
-        </script>
 
 </body>
 </html>

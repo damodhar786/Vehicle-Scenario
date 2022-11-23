@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Scenario</title>
+
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    
+    
+</head>
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="list-group">
+                    
+                    <a href="./home_page.html" class="list-group-item list-group-item-action">Home</a>
+                    <a href="./add_scenario_page.html" class="list-group-item list-group-item-action">Add Scenario</a>
+                    <a href="./all_scenarios_page.html" class="list-group-item list-group-item-action">All Scenario</a>
+                    <a href="./add_vehicle_page.html" class="list-group-item list-group-item-action">Add Vehicle</a>
+
+                  </div>
+            </div>
+            <div class="col-md-10">
+                
+                <h6 class="pb-4">Scenario/Edit</h6>
+
+                <h3 class="card-title pb-2">Edit Scenario</h3>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">                        
+                            <div class="col-md-6">
+                                <label for="scenario-name">Scenario Name</label>
+                                <input id="scenario-name" type="text" class="form-control" required>
+                                <div class="invalid-tooltip" id="name-error">
+                                    Scenario Name is required
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="scenario-time">Scenario Time(seconds)</label>
+                                <input id="scenario-time" type="text" class="form-control" required>
+                                <div class="invalid-tooltip" id="time-error">
+                                    Scenario Time is required
+                                </div>
+                            </div>
+                            
+                        </div>    
+                    </div>                  
+
+                </div>
+                
+                <div class="d-flex">
+                    <button type="button" class="btn btn-success me-3" id="add">Update</button>
+                    <button type="button" class="btn btn-warning me-3" id="reset">Reset</button>
+                    <a href="all_scenarios_page.html"><button type="button" class="btn btn-info" id="go-back">Go Back</button></a>
+                </div>
+            
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+    <script src="./js/edit.js"></script>
+    
+    
+</body>
+</html>

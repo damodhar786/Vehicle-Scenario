@@ -85,4 +85,73 @@ function deleteRow(e,vehicle_id){
 
 }
 
-// Edit
+// Movement of Vehicles
+
+    // Forward: top:50px; left:60px - left: x
+    // Backward: top:50px; right:60px - right: x
+    // Upward: top:50px; right:60px - bottom: y
+    // Downward: bottom:50px; right:60px - top: y
+
+function start_simulation(){
+    var vehicles = $('#road').find('.vehicles');
+    $.each(vehicles,function(vIndex,vehicle){
+        var position = 1;
+        var id = $(this).attr('id');
+        var x = $(this).attr('data-x');
+        var y = $(this).attr('data-y');
+        var direction = $(this).attr('data-direction');
+
+        // console.log($(this).attr('id'))
+        // console.log("x: "+$(this).attr('data-x'))
+        // console.log("y: "+$(this).attr('data-y'))
+        // console.log("direction: "+$(this).attr('data-direction'))
+
+        move_vehicle(position,id,x,y,direction);
+    });
+}
+
+function move_vehicle(position,id,x,y,direction){
+
+    // console.log(id);
+    var move = document.getElementById(id);
+    if(direction == 'forward'){
+        console.log(direction)
+        console.log(position)
+        console.log(x+":"+y)
+        position = parseInt(x) + 10;
+        x = position;
+        
+        //$('#'+id).css({})
+        //$('#'+id).css({"left": position+"px", "top": y+"px", "right":'unset',"bottom":'unset'})
+        //document.getElementById(id).style.transform = 'translate('+y+'%,-'+position+'%)';
+
+        // document.getElementById(id).style.left = position + "px";
+        // document.getElementById(id).style.top = y+ "px";
+
+        move.style.left = position+"px";
+        move.style.bottom = y+"px";
+    }
+    else if(direction == 'backward'){
+        
+        position = parseInt(x) + 10;
+        x = position;
+        //document.getElementById(id).style.right = position + "px";
+        move.style.right = position+"px";
+        move.style.bottom = y+"px";
+    }else if(direction == 'upward'){
+        
+        position = parseInt(y) + 10;
+        y = position;
+        //document.getElementById(id).style.bottom = position + "px";
+        move.style.bottom = position+"px";
+    }else if(direction == 'downward'){
+        position = parseInt(y) + 10;
+        y = position;
+        //document.getElementById(id).style.top = position + "px";
+        move.style.top = position+"px";
+    }
+
+    if (position <= 1000) {
+        window.setTimeout('move_vehicle('+position+',"'+id+'",'+x+','+y+',"'+direction+'")', 1000);
+    }
+}
