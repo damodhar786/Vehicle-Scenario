@@ -22,6 +22,14 @@ if(localData !== null && localData !== '' && localData !== 'undefined'){
         vehicleData = JSON.parse(vehicleData);
 
         var scenarioId = $("#select-scenario").val();
+        var scenarioTime = 0;
+        $.each(dataConvert, function(index,value){
+            if(value.scenario_id == scenarioId){    
+                scenarioTime = value.scenario_time;
+
+                localStorage.setItem('scenarioTime', scenarioTime);
+            }
+        });
 
         $("#vehicle-data").html('');
 
@@ -47,6 +55,16 @@ if(localData !== null && localData !== '' && localData !== 'undefined'){
 
                     $("#vehicle-data").append(vehicle_row);
                     found++;
+
+                    var vehiclesOnRoad = '';
+
+                        vehiclesOnRoad += '<div class="vehicles bg-info" id="'+value.vehicle_name+'" style=" width:20px; height:20px; border-radius:50px; text-align: center;   position: absolute; left: '+value.position_x+'px; bottom:'+value.position_y+'px;" data-x="'+value.position_x+'" data-y="'+value.position_y+'" data-speed="'+value.speed+'" data-direction="'+value.direction+'">';
+                        
+                        vehiclesOnRoad += '<span style="padding: 5px;">'+value.vehicle_id+'</span>';
+                        
+                        vehiclesOnRoad += '</div>';
+
+                    $("#road").append(vehiclesOnRoad);
                 }
             });
 
@@ -79,7 +97,7 @@ function deleteRow(e,vehicle_id){
 
     });
 
-    // localStorage.setItem('vehicle',JSON.stringify(tempVehicleData));
+    localStorage.setItem('vehicle',JSON.stringify(tempVehicleData));
 
     $(e).parent().parent().remove();
 
@@ -94,11 +112,18 @@ function deleteRow(e,vehicle_id){
 
 function start_simulation(){
     var vehicles = $('#road').find('.vehicles');
+
+    var scenarioTime = localStorage.getItem('scenarioTime');
+    var startTime = 0;
+
+
+
     $.each(vehicles,function(vIndex,vehicle){
         var position = 1;
         var id = $(this).attr('id');
         var x = $(this).attr('data-x');
         var y = $(this).attr('data-y');
+        var speed = $(this).attr('data-speed');
         var direction = $(this).attr('data-direction');
 
         // console.log($(this).attr('id'))
@@ -106,18 +131,21 @@ function start_simulation(){
         // console.log("y: "+$(this).attr('data-y'))
         // console.log("direction: "+$(this).attr('data-direction'))
 
-        move_vehicle(position,id,x,y,direction);
+        move_vehicle(position,id,x,y,speed,direction,scenarioTime,startTime);
     });
 }
 
-function move_vehicle(position,id,x,y,direction){
+function move_vehicle(position,id,x,y,speed,direction,scenarioTime,startTime){
 
-    // console.log(id);
+    console.log('startTime');
+    console.log(startTime);
+    console.log('scenarioTime');
+    console.log(scenarioTime);
     var move = document.getElementById(id);
-    if(direction == 'forward'){
-        console.log(direction)
-        console.log(position)
-        console.log(x+":"+y)
+    if(direction == 'Towards'){
+        // console.log(direction)
+        // console.log(position)
+        // console.log(x+":"+y)
         position = parseInt(x) + 10;
         x = position;
         
@@ -131,27 +159,37 @@ function move_vehicle(position,id,x,y,direction){
         move.style.left = position+"px";
         move.style.bottom = y+"px";
     }
-    else if(direction == 'backward'){
+    else if(direction == 'Backwards'){
+
+        // console.log(direction);
+        // console.log(position);
+        // console.log(x+":"+y);
         
-        position = parseInt(x) + 10;
+        position = parseInt(x) - 5;
         x = position;
         //document.getElementById(id).style.right = position + "px";
-        move.style.right = position+"px";
+        // move.style.right = position+"px";
         move.style.bottom = y+"px";
-    }else if(direction == 'upward'){
+        move.style.left = position+"px";
+    }else if(direction == 'Upwards'){
         
-        position = parseInt(y) + 10;
+        position = parseInt(y) + 5;
         y = position;
         //document.getElementById(id).style.bottom = position + "px";
         move.style.bottom = position+"px";
-    }else if(direction == 'downward'){
-        position = parseInt(y) + 10;
+    }else if(direction == 'Downwards'){
+        position = parseInt(y) + 5;
         y = position;
         //document.getElementById(id).style.top = position + "px";
         move.style.top = position+"px";
     }
 
-    if (position <= 1000) {
-        window.setTimeout('move_vehicle('+position+',"'+id+'",'+x+','+y+',"'+direction+'")', 1000);
+
+    if (startTime <= scenarioTime) {
+
+        window.setTimeout('move_vehicle('+position+',"'+id+'",'+x+','+y+','+speed+',"'+direction+'",'+scenarioTime+','+startTime+')', speed);
+
+         startTime++;    
     }
+
 }
