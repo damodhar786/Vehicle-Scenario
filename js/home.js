@@ -47,7 +47,7 @@ if(localData !== null && localData !== '' && localData !== 'undefined'){
                         vehicle_row +=      '<td>'+value.speed+'</td>';
                         vehicle_row +=      '<td>'+value.direction+'</td>';
 
-                        vehicle_row +=      '<td><a href="#" class="text-dark"><i class="fa-solid fa-pencil"></i></a></td>';
+                        vehicle_row +=      '<td><a href="./edit_vehicle_page.html?vehicle_id='+value.vehicle_id+'" class="text-dark"><i class="fa-solid fa-pencil"></i></a></td>';
 
                         vehicle_row +=      '<td><a href="#" class="text-dark" onclick="deleteRow(this,'+value.vehicle_id+')"><i class="fa-solid fa-trash-can" ></i></a></td>';
 

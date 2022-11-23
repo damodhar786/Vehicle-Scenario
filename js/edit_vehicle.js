@@ -1,8 +1,9 @@
-var localData = localStorage.getItem('scenario');
+// Load local storage data of scenario 
+var scenarioLocalData = localStorage.getItem('scenario');
 
-if(localData !== null && localData !== '' && localData !== 'undefined'){
+if(scenarioLocalData !== null && scenarioLocalData !== '' && scenarioLocalData !== 'undefined'){
 
-    var dataConvert = JSON.parse(localData);
+    var dataConvert = JSON.parse(scenarioLocalData);
     $.each(dataConvert, function(index,value){
 
         var scenarioList = '';
@@ -13,17 +14,34 @@ if(localData !== null && localData !== '' && localData !== 'undefined'){
 
 }
 
+var url = new URL(window.location.href );
+var vehicleParam = url.searchParams.get("vehicle_id");
 
-$("#add").click(function(){
+var vehicleLocalData = localStorage.getItem('vehicle');
+vehicleLocalData = JSON.parse(vehicleLocalData);
 
-    
+$.each(vehicleLocalData, function(index,value){
+    if(value.vehicle_id == vehicleParam){
+
+    $("#scenario-id").val(value.scenario_id);
+    $("#vehicle-name").val(value.vehicle_name);
+    $("#speed").val(value.speed);
+    $("#position-x").val(value.position_x);
+    $("#position-y").val(value.position_y);
+    $("#direction").val(value.direction);
+
+    }
+});
+
+// Edit Vehicle Details
+
+function editVehicle(){
     $("#scenario-id-error").hide();
     $("#vehicle-name-error").hide();
     $("#speed-error").hide();
     $("#position-x-error").hide();
     $("#position-y-error").hide();
     $("#direction-error").hide();
-
 
     var scenarioId = $("#scenario-id").val();
     var vehicleName = $("#vehicle-name").val();
@@ -32,59 +50,28 @@ $("#add").click(function(){
     var positionY = $("#position-y").val();
     var direction = $("#direction").val();
 
+    var tempLocalData = vehicleLocalData;
+
     
     if(scenarioId !== '' && vehicleName !== '' && speed !== '' && positionX !== '' || positionY !== '' ||direction !== '' )
     {
-        var localData = localStorage.getItem('vehicle');
-        if(localData !== null && localData !== '' && localData !== 'undefined'){
+        $.each(vehicleLocalData, function(index,value){
+            if(value.vehicle_id == vehicleParam){
 
-            var dataConvert = JSON.parse(localData);
+              tempLocalData[index]['scenario_id'] = scenarioId;
+              tempLocalData[index]['vehicle_name'] = vehicleName;
+              tempLocalData[index]['speed'] = speed;
+              tempLocalData[index]['position_x'] = positionX;
+              tempLocalData[index]['position_y'] = positionY;
+              tempLocalData[index]['direction'] = direction;
 
-            var vehicle = {
-                'scenario_id': scenarioId,
-                'vehicle_id': dataConvert.length + 1,
-                'vehicle_name': vehicleName,
-                'speed': speed,
-                'position_x': positionX,
-                'position_y': positionY,
-                'direction': direction
-            }; 
+            }
+        });
 
-            dataConvert.push(vehicle);
-            localStorage.setItem('vehicle',JSON.stringify(dataConvert));
+        localStorage.setItem('vehicle',JSON.stringify(tempLocalData));
 
-            alert("Your Vehicle Added");
-                $("#scenario-id").val('');
-                $("#vehicle-name").val('');
-                $("#speed").val('');
-                $("#position-x").val('');
-                $("#position-y").val('');
-                $("#direction").val('');
+        alert("Vehicle Data Updated Successfully");
 
-            
-        }else
-        { 
-            var vehicle = [{
-                'scenario_id': scenarioId,
-                'vehicle_id': 1,
-                'vehicle_name': vehicleName,
-                'speed': speed,
-                'position_x': positionX,
-                'position_y': positionY,
-                'direction': direction
-            }];
-
-            localStorage.setItem('vehicle',JSON.stringify(vehicle));
-
-            alert("Your Vehicle Added");
-            
-            $("#scenario-id").val('');
-            $("#vehicle-name").val('');
-            $("#speed").val('');
-            $("#position-x").val('');
-            $("#position-y").val('');
-            $("#direction").val('');
-        }
 
     }else{
 
@@ -113,9 +100,7 @@ $("#add").click(function(){
             $("#direction-error").show();
         }
     } 
-
-});
-
+}
 
 // Reset
 
@@ -126,7 +111,6 @@ $("#reset").click(function(){
     $("#position-x").val('');
     $("#position-y").val('');
     $("#direction").val('');
-
 
     $("#scenario-id-error").hide();
     $("#vehicle-name-error").hide();
