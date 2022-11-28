@@ -7,14 +7,13 @@ if(localData !== null && localData !== '' && localData !== 'undefined'){
     var dataConvert = JSON.parse(localData);
     $.each(dataConvert, function(index,value){
         
-
         var selectScenario = '';
         selectScenario += '<option value="'+value.scenario_id+'">'+value.scenario_name+'</option>';
 
         $("#select-scenario").append(selectScenario);
     });
 
-    // View Data of selected Scenario
+    // View Data of selected Scenario and vehicles position
 
     $("#select-scenario").change(function(){
 
@@ -83,10 +82,34 @@ if(localData !== null && localData !== '' && localData !== 'undefined'){
     });
 }
 
-// Delete
+
+
+// Color of vehicles
+
+// color:'+hexColor+';
+
+// const hex = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "A", "B", "C", "D", "E", "F"];
+
+// let hexColor = '#';
+
+//     for(let i = 0; i < 6; i++){
+//         hexColor += hex[getRandomColor()];
+//     }
+
+//     color.textContent = hexColor;
+//     document.body.style.color = hexColor;
+
+//     function getRandomColor(){
+//         return Math.floor(Math.random() * hex.length);
+//     }
+
+
+
+
+
+// Delete a row 
 
 function deleteRow(e,vehicle_id){
-    // alert(vehicle_id);
 
     var localVehicleData = localStorage.getItem('vehicle');
     var tempVehicleData = JSON.parse(localVehicleData);
@@ -119,8 +142,6 @@ function start_simulation(){
     var scenarioTime = localStorage.getItem('scenarioTime');
     var startTime = 0;
 
-
-
     $.each(vehicles,function(vIndex,vehicle){
         var position = 1;
         var id = $(this).attr('id');
@@ -128,11 +149,6 @@ function start_simulation(){
         var y = $(this).attr('data-y');
         var speed = $(this).attr('data-speed');
         var direction = $(this).attr('data-direction');
-
-        // console.log($(this).attr('id'))
-        // console.log("x: "+$(this).attr('data-x'))
-        // console.log("y: "+$(this).attr('data-y'))
-        // console.log("direction: "+$(this).attr('data-direction'))
 
         move_vehicle(position,id,x,y,speed,direction,scenarioTime,startTime);
     });
@@ -146,47 +162,35 @@ function move_vehicle(position,id,x,y,speed,direction,scenarioTime,startTime){
     console.log(scenarioTime);
     var move = document.getElementById(id);
     if(direction == 'Towards'){
-        // console.log(direction)
-        // console.log(position)
-        // console.log(x+":"+y)
+       
         position = parseInt(x) + 10;
         x = position;
-        
-        //$('#'+id).css({})
-        //$('#'+id).css({"left": position+"px", "top": y+"px", "right":'unset',"bottom":'unset'})
-        //document.getElementById(id).style.transform = 'translate('+y+'%,-'+position+'%)';
-
-        // document.getElementById(id).style.left = position + "px";
-        // document.getElementById(id).style.top = y+ "px";
 
         move.style.left = position+"px";
         move.style.bottom = y+"px";
     }
     else if(direction == 'Backwards'){
-
-        // console.log(direction);
-        // console.log(position);
-        // console.log(x+":"+y);
         
         position = parseInt(x) - 5;
         x = position;
-        //document.getElementById(id).style.right = position + "px";
-        // move.style.right = position+"px";
+
         move.style.bottom = y+"px";
         move.style.left = position+"px";
+
     }else if(direction == 'Upwards'){
         
         position = parseInt(y) + 5;
         y = position;
-        //document.getElementById(id).style.bottom = position + "px";
+
         move.style.bottom = position+"px";
+
     }else if(direction == 'Downwards'){
         position = parseInt(y) + 5;
         y = position;
-        //document.getElementById(id).style.top = position + "px";
-        move.style.top = position+"px";
-    }
 
+        move.style.top = position+"px";
+
+    }
 
     if (startTime <= scenarioTime) {
 
@@ -197,9 +201,8 @@ function move_vehicle(position,id,x,y,speed,direction,scenarioTime,startTime){
 
 }
 
-
 // Stop Simulation
 
 function stopSimulation(){
-    $("#road").html('');
+    $("#road").html('');    
 }
