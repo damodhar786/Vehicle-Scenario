@@ -2,7 +2,6 @@
 
 var url = new URL(window.location.href );
 var scenarioParam = url.searchParams.get("scenario_id");
-// alert(scenarioParam);
 
 var scenarioLocalData = localStorage.getItem('scenario');
 scenarioLocalData = JSON.parse(scenarioLocalData);

@@ -77,3 +77,12 @@ label{
 #select{
     margin-bottom: 50px;
 }
+
+/* Home Page Grid  */
+
+#road{
+    background-size: 56px 55px;
+    background-image: linear-gradient(to right, grey 1px, transparent 1px),
+                      linear-gradient(to bottom, grey 1px, transparent 1px);
+    overflow: hidden;
+}

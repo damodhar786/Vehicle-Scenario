@@ -11,7 +11,7 @@ if(localData !== null && localData !== '' && localData !== 'undefined'){
             scenario_row += '<tr>';
             scenario_row += '    <td>'+value.scenario_id+'</td>';
             scenario_row += '    <td>'+value.scenario_name+'</td>';
-            scenario_row += '    <td>'+value.scenario_time+'</td>';
+            scenario_row += '    <td>'+value.scenario_time+'s</td>';
             scenario_row += '    <td>'+getVehicleId(value.scenario_id)+'</td>';
             scenario_row += '    <td><a href="add_vehicle_page.html" class="text-dark"><i class="fa-solid fa-circle-plus" id="add-vehicle"></i></a></td>';
 
