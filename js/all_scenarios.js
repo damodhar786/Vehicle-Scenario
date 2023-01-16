@@ -5,7 +5,7 @@ var localData = localStorage.getItem('scenario');
 if(localData !== null && localData !== '' && localData !== 'undefined'){
 
     var dataConvert = JSON.parse(localData);
-    $.each(dataConvert, function(index,value){
+    $.each(dataConvert, function(value){
 
         var scenario_row = '';
             scenario_row += '<tr>';
