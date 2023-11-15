@@ -4,12 +4,16 @@ var localData = localStorage.getItem('scenario');
 
 if(localData !== null && localData !== '' && localData !== 'undefined'){
 
+    
     var dataConvert = JSON.parse(localData);
-    $.each(dataConvert, function(value){
 
+    $.each(dataConvert, function(value){
+    console.log(dataConvert);
+    console.log(value.scenario_name);
+        
         var scenario_row = '';
             scenario_row += '<tr>';
-            scenario_row += '    <td>'+value.scenario_id+'</td>';
+            scenario_row += '    <td>'+(value.scenario_id)+'</td>';
             scenario_row += '    <td>'+value.scenario_name+'</td>';
             scenario_row += '    <td>'+value.scenario_time+'s</td>';
             scenario_row += '    <td>'+getVehicleId(value.scenario_id)+'</td>';
